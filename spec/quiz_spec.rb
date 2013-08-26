@@ -22,14 +22,20 @@ describe "a quiz" do
   it "should have a length of 1 after adding an array of numbers to it" do
     quiz = Quiz.new
     quiz.add([5,3])
-    expect(quiz.numbers.length).to eq(1)
+    expect(quiz.numbers).to eq([5,3])
+    quiz.add([5, true])
+    expect(quiz.numbers).to eq([5,3,5])
+    expect(quiz.trash).to eq([true])
   end
 
   it "if we try to add a string to numbers it should go to trash" do
     quiz = Quiz.new
+    expect(quiz.trash).to be_empty
     quiz.add("I love you, mom")
     expect(quiz.numbers.length).to eq(0)
+    expect(quiz.trash).to eq(["I love you, mom"])
   end
+
 
 end
 

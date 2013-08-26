@@ -10,7 +10,7 @@ QUIZ_TOPICS = ["ruby", "rspec", "testing", "arrays", "objects"]
 
 # create a quiz object
 class Quiz
-attr_accessor :numbers
+attr_accessor :numbers, :trash
   def initialize()
     @numbers = []
     @trash = []
@@ -20,14 +20,18 @@ attr_accessor :numbers
     if number.class == Fixnum
       @numbers << number
     elsif number.class == Array
-      @numbers << number
+      number.each do |num|
+        self.add(num)
+      end
     else number.class ==! Fixnum
       @trash << number
     end
   end
 
   def count(number)
-    @number
+    @numbers.select do |num|
+      num == number
+    end.size
   end
 
   def trash
@@ -35,6 +39,8 @@ attr_accessor :numbers
   end
 
 end
+
+
 
 # We can add numbers to it
 # quiz = Quiz.new
